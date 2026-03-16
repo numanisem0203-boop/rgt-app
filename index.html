@@ -1269,9 +1269,11 @@ let completions = JSON.parse(localStorage.getItem('completions') || '{}');
 // Özel görevler: { 'YYYY-MM-DD': [{id, name, timeStart, timeEnd, note, done}] }
 let specialTasks = JSON.parse(localStorage.getItem('specialTasks') || '{}');
 
-// Tema - varsayılan siyah-gri
+// Tema - varsayılan siyah-gri (eski 'default' tema varsa temizle)
 let currentTheme = localStorage.getItem('theme') || 'siyah-gri';
-document.documentElement.setAttribute('data-theme', currentTheme === 'default' ? '' : currentTheme);
+if (currentTheme === 'default' || !currentTheme) currentTheme = 'siyah-gri';
+localStorage.setItem('theme', currentTheme);
+document.documentElement.setAttribute('data-theme', currentTheme);
 
 const themes = [
   { id: 'default', name: 'Siyah\nTuruncu', bg: '#111110', accent: '#e8823a' },
