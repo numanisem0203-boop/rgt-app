@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0045)file:///C:/Users/numan/Downloads/RGT_App.html -->
+<!-- saved from url=(0047)file:///C:/Users/numan/Downloads/RGT_App_2.html -->
 <html lang="tr" data-theme="siyah-gri"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -995,7 +995,14 @@ html, body {
   font-size: 11px;
 }
 
-/* Boş durum */
+.modal-sheet button, .modal-sheet .add-btn, .modal-sheet .week-tab, .modal-sheet .cal-day, .modal-sheet .theme-option, .modal-sheet .time-toggle-btn, .modal-sheet .auth-tab {
+  position: relative;
+  z-index: 5;
+}
+.modal-sheet {
+  position: relative;
+  z-index: 101;
+}
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -1016,7 +1023,7 @@ html, body {
 <body>
 <!-- AUTH EKRANI -->
 
-<div id="auth-screen" class="hidden">
+<div id="auth-screen">
   <div class="auth-logo">✓</div>
   <div class="auth-title">RGT App</div>
   <div class="auth-subtitle">Günlük rutinlerini ve görevlerini takip et</div>
@@ -1032,7 +1039,7 @@ html, body {
       <div class="auth-forgot" id="forgot-btn" onclick="forgotPassword()">Şifremi unuttum</div>
       <div class="auth-error show" id="auth-error">Google girişi başarısız: Firebase: This operation is not supported in the environment this application is running on. "location.protocol" must be http, https or chrome-extension and web storage must be enabled. (auth/operation-not-supported-in-this-environment).</div>
       <div class="auth-loading" id="auth-loading"><div class="spinner"></div> Lütfen bekle...</div>
-      <button class="btn-primary" id="auth-submit-btn" onclick="handleAuth()">Giriş Yap</button>
+      <button class="btn-primary" id="auth-submit-btn" onclick="handleAuth()" style="display: block;">Giriş Yap</button>
       <div class="auth-divider"><span>veya</span></div>
       <button class="btn-google" onclick="handleGoogleAuth()">
         <svg class="google-icon" viewBox="0 0 24 24">
@@ -1051,375 +1058,25 @@ html, body {
   <!-- HEADER -->
   <div id="header">
     <div id="date-display">
-      <span id="day-name">Salı</span>
-      <span id="date-full">17 Mart 2026</span>
+      <span id="day-name"></span>
+      <span id="date-full"></span>
     </div>
     <div id="header-actions">
       <div class="header-btn" id="cal-btn" title="Takvim">📅</div>
       <div class="header-btn" id="theme-btn" title="Tema">🎨</div>
       <div id="user-btn" title="Hesap" onclick="openUserModal()">
         <span>👤</span>
-        <span id="user-email">malikcandeger14</span>
+        <span id="user-email">...</span>
       </div>
     </div>
   </div>
 
   <!-- GÜN NAVİGASYON -->
-  <div id="day-nav"><div class="day-chip">Cmt 14</div><div class="day-chip">Paz 15</div><div class="day-chip">Pzt 16</div><div class="day-chip active">Bugün</div><div class="day-chip">Çar 18</div><div class="day-chip">Per 19</div><div class="day-chip">Cum 20</div></div>
+  <div id="day-nav"></div>
 
   <!-- KARTLAR -->
   <div id="cards-wrapper">
-    <div id="cards-track" style="transform: translateX(-11436px);"><div class="day-card" data-offset="-30"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-29"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r1" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r2" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-28"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r3" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-27"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r4" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r5" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-26"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r6" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-25"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r7" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r8" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-24"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-23"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-22"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r1" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r2" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-21"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r3" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-20"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r4" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r5" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-19"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r6" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-18"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r7" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r8" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-17"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-16"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-15"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r1" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r2" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-14"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r3" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-13"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r4" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r5" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-12"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r6" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-11"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r7" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r8" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-10"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-9"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-8"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r1" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r2" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-7"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r3" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-6"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r4" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r5" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-5"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r6" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-4"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r7" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r8" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-3"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-2"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="-1"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r1" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r2" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card active-card" data-offset="0"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r3" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="1"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r4" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r5" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="2"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r6" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="3"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r7" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r8" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="4"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="5"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="6"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r1" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r2" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="7"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r3" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="8"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r4" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r5" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="9"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r6" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="10"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r7" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r8" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="11"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="12"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="13"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r1" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r2" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="14"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r3" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="15"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r4" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r5" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="16"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r6" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="17"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r7" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r8" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="18"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="19"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="20"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r1" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r2" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="21"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r3" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="22"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r4" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r5" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="23"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r6" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="24"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r7" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r8" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="25"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="26"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için rutin yok</span></div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="27"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r1" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r2" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="28"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r3" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="29"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r4" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div><div class="task-item" data-id="r5" data-type="routine">
-    <span class="task-time">08:00 – 09:00</span>
-    <span class="task-name">Egzersiz</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div><div class="day-card" data-offset="30"><div class="card-half"><div class="half-header"><span class="half-title">Rutinler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="task-item" data-id="r6" data-type="routine">
-    <span class="task-time">07:00 – 07:30</span>
-    <span class="task-name">Sabah rutini</span>
-    <div class="task-detail-btn">···</div>
-    <div class="swipe-line"></div>
-  </div></div></div><div class="card-half"><div class="half-header"><span class="half-title">Görevler</span><div class="add-btn">+</div></div><div class="items-scroll"><div class="empty-state"><span class="empty-state-text">Bu gün için özel görev yok</span></div></div></div></div></div>
+    <div id="cards-track"></div>
   </div>
 </div>
 
@@ -1447,8 +1104,8 @@ html, body {
         <span class="detail-val" id="user-info-email">-</span>
       </div>
     </div>
-    <button class="btn-danger" id="logout-btn" style="width:100%;margin-top:8px;" onclick="handleLogout()">Çıkış Yap</button>
-    <button class="btn-secondary" onclick="closeModal(&#39;user-modal&#39;)">Kapat</button>
+    <button class="btn-danger" id="logout-btn" style="width:100%;margin-top:8px;flex:none;display:block;position:relative;z-index:10;" onclick="handleLogout()">Çıkış Yap</button>
+    <button class="btn-secondary" style="position:relative;z-index:10;" onclick="closeModal(&#39;user-modal&#39;)">Kapat</button>
   </div>
 </div>
 
