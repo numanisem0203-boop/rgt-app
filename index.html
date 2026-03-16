@@ -1049,6 +1049,9 @@ html, body {
         </svg>
         Google ile Giriş Yap
       </button>
+      <div style="text-align:center;margin-top:4px;">
+        <span onclick="handleGuestMode()" style="font-size:12px;color:var(--text-secondary);cursor:pointer;text-decoration:underline;opacity:0.7;">Oturum açmadan devam et</span>
+      </div>
     </div>
   </div>
 </div>
@@ -2176,6 +2179,16 @@ async function handleGoogleAuth() {
 
 // Google redirect sonucu window.onload içinde yakalanıyor
 
+function handleGuestMode() {
+  // Misafir mod: Firebase olmadan sadece localStorage ile çalış
+  currentUser = null;
+  document.getElementById('auth-screen').classList.add('hidden');
+  document.getElementById('user-email').textContent = 'Misafir';
+  updateHeader();
+  updateDayNav();
+  initTrack();
+}
+
 async function forgotPassword() {
   const email = document.getElementById('auth-email').value.trim();
   if (!email) { showAuthError('Önce e-posta adresini gir.'); return; }
@@ -2188,14 +2201,19 @@ async function forgotPassword() {
   }
 }
 
-function handleLogout() {
-  auth.signOut();
-  closeModal('user-modal');
+function openUserModal() {
+  document.getElementById('user-info-email').textContent = currentUser ? currentUser.email : 'Misafir (veriler sadece bu cihazda)';
+  openModal('user-modal');
 }
 
-function openUserModal() {
-  document.getElementById('user-info-email').textContent = currentUser ? currentUser.email : '-';
-  openModal('user-modal');
+function handleLogout() {
+  if (currentUser) {
+    auth.signOut();
+  } else {
+    // Misafir mod: auth ekranına dön
+    document.getElementById('auth-screen').classList.remove('hidden');
+  }
+  closeModal('user-modal');
 }
 
 // Auth state - window.onload içinde
